@@ -1,7 +1,7 @@
 /*
 MIT License
 
-Copyright (c) [year] [fullname]
+Copyright (c) 2019 Vivek Bhageria
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +20,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-  */
+*/
 
 #ifndef TwoWire_h
   #include "Wire.h"
@@ -54,6 +54,6 @@ uint8_t decToBcd(uint8_t val);
 uint8_t bcdToDec(uint8_t val);
 int setTime(uint8_t second, uint8_t minute, uint8_t hour, uint8_t dayOfWeek, uint8_t
 dayOfMonth, uint8_t month, uint8_t year);
-void readTime();
+void readTime(struct date *);
 String getTime();
 String getDate();

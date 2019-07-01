@@ -24,79 +24,95 @@ SOFTWARE.
 
 #include"rtc3231.h"
 
-struct date rtc;
-
+//Initialize the RTC. It initializes the I2C communication
 void initRTC3231()
 {
-  Wire.begin();
+  Wire.begin(); //Initialize I2C
 }
 
+//Get the seconds
 uint8_t getSeconds()
 {
-  readTime();
-  return rtc.second;
+  struct date temp;
+  readTime(&temp);
+  return temp.second;
 }
 
+//Get the minutes
 uint8_t getMinutes()
 {
-  readTime();
-  return rtc.minute;
+  struct date temp;
+  readTime(&temp);
+  return temp.minute;
 }
 
+//Get the hours
 uint8_t getHours()
 {
-  readTime();
-  return rtc.hour;
+  struct date temp;
+  readTime(&temp);
+  return temp.hour;
 }
 
+//Get the Day of the Week - Sunday=1, Saturday=7
 uint8_t getDayOfWeek()
 {
-    readTime();
-    return rtc.dayOfWeek;
+  struct date temp;
+  readTime(&temp);
+  return temp.dayOfWeek;
 }
 
+//Get Name of the day of the week
 String getNameOfDay()
 {
   char *dayOfWeek[] = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
-  readTime();
-  return dayOfWeek[rtc.dayOfWeek - 1];
+  struct date temp;
+  readTime(&temp);
+  return dayOfWeek[temp.dayOfWeek - 1];
 }
 
+//Get the Day
 uint8_t getDay()
 {
-  readTime();
-  return rtc.day;
+  struct date temp;
+  readTime(&temp);
+  return temp.day;
 }
 
+//Get the Month
 uint8_t getMonth()
 {
-  readTime();
-  return rtc.month;
+  struct date temp;
+  readTime(&temp);
+  return temp.month;
 }
 
+//Get the Year
 uint8_t getYear()
 {
-  readTime();
-  return rtc.year;
+  struct date temp;
+  readTime(&temp);
+  return temp.year;
 }
 
-
+//Convert dec to BCD because the module understands only BCD
 uint8_t decToBcd(uint8_t val)
 {
-  return( (val/10*16) + (val%10) );
+  return( ((val/10)<<4) + (val%10) );
 }
 
+//Convert BCD to Dec
 uint8_t bcdToDec(uint8_t val)
 {
-  return( (val/16*10) + (val%16) );
+  return( ((val>>4)*10) + (val%16) );
 }
 
-
+//Set the time. Right now it supports only 24hr format
 int setTime(uint8_t second, uint8_t minute, uint8_t hour, uint8_t dayOfWeek, uint8_t
 dayOfMonth, uint8_t month, uint8_t year)
 {
  
-  Wire.beginTransmission(DS3231_I2C_ADDRESS);
+  Wire.beginTransmission(DS3231_I2C_ADDRESS); //Begin transmission
   Wire.write(0);
   Wire.write(decToBcd(second)); 
   Wire.write(decToBcd(minute));
@@ -109,37 +125,38 @@ dayOfMonth, uint8_t month, uint8_t year)
   return 0;
 }
 
-
-void readTime()
+//Reat the time and date from the RTC
+void readTime(struct date *temp)
 {
   Wire.beginTransmission(DS3231_I2C_ADDRESS);
   Wire.write(0); 
   Wire.endTransmission();
   Wire.requestFrom(DS3231_I2C_ADDRESS, 7);
   
-  rtc.second = bcdToDec(Wire.read() & 0x7f);
-  rtc.minute = bcdToDec(Wire.read());
-  rtc.hour = bcdToDec(Wire.read() & 0x3f);
-  rtc.dayOfWeek = bcdToDec(Wire.read());
-  rtc.day = bcdToDec(Wire.read());
-  rtc.month = bcdToDec(Wire.read());
-  rtc.year = bcdToDec(Wire.read());
+  temp->second = bcdToDec(Wire.read() & 0x7f);
+  temp->minute = bcdToDec(Wire.read());
+  temp->hour = bcdToDec(Wire.read() & 0x3f);
+  temp->dayOfWeek = bcdToDec(Wire.read());
+  temp->day = bcdToDec(Wire.read());
+  temp->month = bcdToDec(Wire.read());
+  temp->year = bcdToDec(Wire.read());
 }
 
 
 String getTime()
 {
   String fullTime;
-  readTime();
+  struct date temp;
+  readTime(&temp);
 
   fullTime = String();
   
   //rtc.time.concat(rtc.hour);
-  fullTime =  rtc.hour;
+  fullTime =  temp.hour;
   fullTime.concat(":");
-  fullTime.concat(rtc.minute);
+  fullTime.concat(temp.minute);
   fullTime.concat(":");
-  fullTime.concat(rtc.second);
+  fullTime.concat(temp.second);
   
   return fullTime;
 }
@@ -147,14 +164,15 @@ String getTime()
 String getDate()
 {
   String fullDate;
-  readTime();
+  struct date temp;
+  readTime(&temp);
   
   fullDate = String();
 
-  fullDate =  rtc.day;
+  fullDate =  temp.day;
   fullDate.concat("/");
-  fullDate.concat(rtc.month);
+  fullDate.concat(temp.month);
   fullDate.concat("/");
-  fullDate.concat(rtc.year);
+  fullDate.concat(temp.year);
   return fullDate;
 }
