@@ -3,14 +3,14 @@
 
 
 // Update these with values suitable for your network.
-const char* ssid = "Vk";
-const char* password = "AsdZxc@123";
+const char* ssid = "xxxxxx";
+const char* password = "xxxxx";
 const char* mqtt_server = "io.adafruit.com";
 #define mqtt_port 1883
-#define MQTT_USER "bhageria"
-#define MQTT_PASSWORD "274edc6774534d25a429fa3706606cd3"
-#define MQTT_SERIAL_PUBLISH_CH "bhageria/feeds/room-temp"
-#define MQTT_SERIAL_RECEIVER_CH "USER/feeds/ledBrightness"
+#define MQTT_USER "xxxxx"
+#define MQTT_PASSWORD "xxxxxx"
+#define MQTT_SERIAL_PUBLISH_CH "xxxxx"
+#define MQTT_SERIAL_RECEIVER_CH "xxxxx"
 
 const int analogInPin = A0;  // ESP8266 Analog Pin ADC0 = A0
 

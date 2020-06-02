@@ -20,12 +20,13 @@ void setup ()
   
   // Comment out below lines once you set the date & time.
     // Following line sets the RTC to the date & time this sketch was compiled
-    rtc.adjust(DateTime(2020, 3,07, 18, 16, 0));
+   // rtc.adjust(DateTime(2020, 3,07, 18, 16, 0));
   
     // Following line sets the RTC with an explicit date & time
     // for example to set January 27 2017 at 12:56 you would call:
     // rtc.adjust(DateTime(2017, 1, 27, 12, 56, 0));
   }
+ // rtc.adjust(DateTime(2020, 6, 2, 12, 20, 30));
 }
 
 void loop () 
