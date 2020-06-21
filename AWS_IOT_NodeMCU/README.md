@@ -20,11 +20,6 @@ Do make sure to update the following lines:
 
 The following information will be helpful:
 
-1. **Line number 193** - `snprintf (msg, 75, "{\"Message\": \"Hello from NerdyElectronics.com\" - %d}", count); `
-This is the line where we create the message which we want to send.
+1. **Line number 193** - `snprintf (msg, 75, "{\"Message\": \"Hello from NerdyElectronics.com\" - %d}", count);` This is the line where we create the message which we want to send.
 
-2. **Line number 198** - `client.publish("outTopic", msg);`
-
-In this line we publish the message we created in line 175. 
-We publish it to the topic **"outTopic"**. 
-If you want to publish the message to some other topic, edit the topic name here.
+2. **Line number 198** - `client.publish("outTopic", msg);` In this line we publish the message we created in line 175. We publish it to the topic **"outTopic"**. If you want to publish the message to some other topic, edit the topic name here.
