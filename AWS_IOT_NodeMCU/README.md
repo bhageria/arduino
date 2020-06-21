@@ -1,4 +1,4 @@
-Connect NodeMCU to AWS IoT Core.
+﻿Connect NodeMCU to AWS IoT Core.
 Publish Messages from NodeMCU to the Core
  
 Tutorial by https://nerdyelectronics.com:
