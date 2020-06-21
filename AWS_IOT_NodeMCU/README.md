@@ -1,8 +1,5 @@
 ﻿# Connect NodeMCU to AWS IoT Core.
 
-##Publish Messages from NodeMCU to the Core
-## Subscribe to Messages from AWS IoT in NodeMCU
-
 Tutorial by https://nerdyelectronics.com:
 
 1)  AWS IoT - Create a Thing
