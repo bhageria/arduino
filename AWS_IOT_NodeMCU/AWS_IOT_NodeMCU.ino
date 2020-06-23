@@ -9,6 +9,7 @@ Tutorial by https://nerdyelectronics.com:
     https://nerdyelectronics.com/iot/how-to-convert-certificates-from-pem-to-der-format/
 3)  Connect NodeMCU to AWS IoT Core
     https://nerdyelectronics.com/iot/how-to-connect-nodemcu-to-aws-iot-core/
+    
 *********************************************************************************************/
  
 #include "FS.h"
